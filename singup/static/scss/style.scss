@@ -1,0 +1,272 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
+
+///// _mixins.scss
+
+@mixin display-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin input-settings {
+  padding: 5px 20px;
+
+  width: calc(100% - 125px);
+  height: 40px;
+
+  background-color: #f3f4f6;
+  font-size: 16px;
+
+  border: none;
+  border-radius: 15px;
+
+  outline: none;
+}
+
+@mixin button-settings {
+  position: relative;
+
+  margin: 30px 0 75px;
+
+  width: 60%;
+  height: 60px;
+
+  color: white;
+  background: linear-gradient(-135deg, #1d2b64 0%, #f8cdda 100%);
+  font-size: 18px;
+  font-weight: $font-weight;
+  letter-spacing: $letter-spacing;
+
+  box-shadow: 0 1px 15px 0 rgba(255, 0, 0, 0.1),
+    0 -1px 15px 0 rgba(0, 0, 0, 0.1);
+
+  border: none;
+  border-radius: 25px;
+
+  cursor: pointer;
+
+  z-index: 1;
+
+  &:hover:before {
+    opacity: 1;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(-135deg, #4a69e2 0%, #ff6c98 100%);
+    border-radius: 25px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.65s;
+  }
+}
+
+@mixin a-tag-settings {
+  color: $primary-color;
+
+  text-decoration: none;
+
+  transition: color 0.4s;
+}
+
+///// _mixins.scss
+
+///// _variables.scss
+
+$font-weight: 700;
+$letter-spacing: 0.85px;
+
+//
+
+$primary-color: #1d1e22;
+
+//
+
+$link-hover-color: #858585;
+
+///// _variables.scss
+
+///// _globals.scss
+
+.login-card,
+.signup-card {
+  width: 500px;
+  height: auto;
+
+  background-color: white;
+
+  box-shadow: 0 3px 50px 0 rgba(0, 0, 0, 0.2), 0 1px 50px 0 rgba(0, 0, 0, 0.19);
+
+  border-radius: 45px;
+}
+
+//
+
+.login-card-items,
+.signup-card-items {
+  @include display-flex;
+  flex-direction: column;
+  gap: 65px;
+
+  margin: 65px 30px 30px;
+
+  width: auto;
+  height: auto;
+}
+
+//
+
+.login-tag,
+.signup-tag {
+  font-size: 45px;
+  font-weight: $font-weight;
+  letter-spacing: $letter-spacing;
+}
+
+//
+
+.form-items {
+  @include display-flex;
+  flex-direction: column;
+  gap: 30px;
+
+  position: relative;
+
+  width: 100%;
+  height: auto;
+}
+
+//
+
+.create-account-item,
+.have-account-item {
+  position: absolute;
+  bottom: 30px;
+
+  a {
+    @include a-tag-settings;
+
+    font-size: 15px;
+
+    span {
+      font-weight: $font-weight;
+    }
+
+    &:hover,
+    &:active {
+      color: $link-hover-color;
+    }
+  }
+}
+
+///// _globals.scss
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @include display-flex;
+
+  height: 100vh;
+
+  color: $primary-color;
+  background-color: #f3f4f6;
+  font-family: "Raleway", sans-serif;
+}
+
+.login-signup-cards {
+  @include display-flex;
+  gap: 150px;
+
+  .login-card {
+    // globals.scss
+
+    .login-card-items {
+      // globals.scss
+
+      .login-tag {
+        // globals.scss
+      }
+
+      .form-items {
+        // globals.scss
+
+        input[type="email"] {
+          @include input-settings;
+        }
+
+        .password-item {
+          @include display-flex;
+          flex-direction: column;
+          gap: 10px;
+
+          width: 100%;
+          height: auto;
+
+          input[type="password"] {
+            @include input-settings;
+          }
+
+          .forgot-password-item a {
+            @include a-tag-settings;
+
+            font-size: 15px;
+            font-weight: $font-weight;
+
+            &:hover,
+            &:active {
+              color: $link-hover-color;
+            }
+          }
+        }
+
+        button[type="button"] {
+          @include button-settings;
+        }
+
+        .create-account-item {
+          // globals.scss
+        }
+      }
+    }
+  }
+
+  .signup-card {
+    // globals.scss
+
+    .signup-card-items {
+      // globals.scss
+
+      .signup-tag {
+        // globals.scss
+      }
+
+      .form-items {
+        // globals.scss
+
+        input[type="email"] {
+          @include input-settings;
+        }
+
+        input[type="password"] {
+          @include input-settings;
+        }
+
+        button[type="button"] {
+          @include button-settings;
+        }
+
+        .have-account-item {
+          // globals.scss
+        }
+      }
+    }
+  }
+}
